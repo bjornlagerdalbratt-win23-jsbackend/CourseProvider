@@ -1,6 +1,4 @@
-﻿using CourseProvider.Infrastructure.Data.Entities;
-
-namespace CourseProvider.Infrastructure.Models;
+﻿namespace CourseProvider.Infrastructure.Models;
 
 public class CourseCreateRequest
 {
@@ -11,7 +9,7 @@ public class CourseCreateRequest
     public string[]? Categories { get; set; }
     public string? Title { get; set; }
     public string? Ingress { get; set; }
-    public int StarRating { get; set; }
+    public decimal StarRating { get; set; }
     public string? Reviews { get; set; }
     public string? LikesInProcent { get; set; }
     public string? Likes { get; set; }

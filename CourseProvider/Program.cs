@@ -4,22 +4,23 @@ using CourseProvider.Infrastructure.GraphQL.ObjectTypes;
 using CourseProvider.Infrastructure.GraphQL.Queries;
 using CourseProvider.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Azure.Functions.Worker;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 
 var host = new HostBuilder()
-    .ConfigureFunctionsWorkerDefaults()
+    .ConfigureFunctionsWebApplication()
     .ConfigureServices(services =>
     { //REGISTRERING AV COSMOS DB
       //AddPooledDbContextFactory<DataContext>: Detta sätter upp en pool av DataContext-instanser, där DataContext är min anpassade DbContext-klass
       //x => x.UseCosmos(...): Detta konfigurerar varje DataContext-instans att använda Cosmos DB-leverantören med den angivna URI:n och databasnamnet, vilka hämtas från miljövariabler.
       // Konfigurera Application Insights
-      //  services.AddApplicationInsightsTelemetryWorkerService();
-      //services.ConfigureFunctionsApplicationInsights();
 
 
+        services.AddApplicationInsightsTelemetryWorkerService();
+        services.ConfigureFunctionsApplicationInsights();
         services.AddPooledDbContextFactory<DataContext>(x =>
         {
             x.UseCosmos(

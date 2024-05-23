@@ -1,6 +1,4 @@
 ﻿using CourseProvider.Infrastructure.Data.Entities;
-using CourseProvider.Infrastructure.Models;
-using HotChocolate.Types;
 
 namespace CourseProvider.Infrastructure.GraphQL.ObjectTypes;
 
@@ -14,15 +12,15 @@ public class CourseType : ObjectType<CourseEntity>
         descriptor.Field(c => c.Categories).Type<ListType<StringType>>();
         descriptor.Field(c => c.Title).Type<StringType>();
         descriptor.Field(c => c.Ingress).Type<StringType>();
-        descriptor.Field(c => c.StarRating).Type<StringType>();
+        descriptor.Field(c => c.StarRating).Type<DecimalType>();
         descriptor.Field(c => c.Reviews).Type<StringType>();
         descriptor.Field(c => c.LikesInProcent).Type<StringType>();
         descriptor.Field(c => c.Likes).Type<StringType>();
-        descriptor.Field(c => c.Hours).Type<IntType>();
+        descriptor.Field(c => c.Hours).Type<StringType>();
         descriptor.Field(c => c.Authors).Type<ListType<AuthorType>>();
         descriptor.Field(c => c.Prices).Type<PricesType>();
         descriptor.Field(c => c.Content).Type<ContentType>();
-        
+
     }
 }
 
