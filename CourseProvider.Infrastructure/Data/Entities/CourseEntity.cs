@@ -5,7 +5,7 @@ namespace CourseProvider.Infrastructure.Data.Entities;
 public class CourseEntity
 {
     [Key]
-    public string Id { get; set; } = Guid.NewGuid().ToString();
+    public string Id { get; set; } = Guid.NewGuid().ToString(); //Guid för att automatiskt sätta ID
     public string? ImageUri { get; set; }
     public string? ImageHeaderUri { get; set; }
     public bool IsBestSeller { get; set; }
@@ -23,3 +23,8 @@ public class CourseEntity
     public virtual ContentEntity? Content { get; set; }
 
 }
+
+//public class CategoryEntity
+//{
+//    public string? CategoryName { get; set; }
+//}

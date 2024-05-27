@@ -16,7 +16,6 @@ var host = new HostBuilder()
     { //REGISTRERING AV COSMOS DB
       //AddPooledDbContextFactory<DataContext>: Detta sätter upp en pool av DataContext-instanser, där DataContext är min anpassade DbContext-klass
       //x => x.UseCosmos(...): Detta konfigurerar varje DataContext-instans att använda Cosmos DB-leverantören med den angivna URI:n och databasnamnet, vilka hämtas från miljövariabler.
-      // Konfigurera Application Insights
 
 
         services.AddApplicationInsightsTelemetryWorkerService();
@@ -32,8 +31,7 @@ var host = new HostBuilder()
         //Reg service
         services.AddScoped<ICourseService, CourseService>();
 
-        //**GRAPGQL**
-        //registrering av GraphQL-funktioner
+        //**GRAPGQL**         //registrering av GraphQL-funktioner
         services.AddGraphQLFunction()
             .AddQueryType<CourseQuery>()
             .AddMutationType<CourseMutation>()

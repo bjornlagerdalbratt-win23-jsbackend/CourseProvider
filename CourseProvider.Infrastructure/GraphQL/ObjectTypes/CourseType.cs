@@ -28,7 +28,8 @@ public class AuthorType : ObjectType<AuthorEntity>
 {
     protected override void Configure(IObjectTypeDescriptor<AuthorEntity> descriptor)
     {
-        descriptor.Field(a => a.Name).Type<StringType>();
+        descriptor.Field(a => a.FirstName).Type<StringType>();
+        descriptor.Field(a => a.LastName).Type<StringType>();
     }
 }
 public class PricesType : ObjectType<PricesEntity>

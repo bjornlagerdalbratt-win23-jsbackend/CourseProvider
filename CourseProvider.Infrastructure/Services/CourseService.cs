@@ -1,5 +1,4 @@
 ﻿using CourseProvider.Infrastructure.Data.Contexts;
-using CourseProvider.Infrastructure.Data.Entities;
 using CourseProvider.Infrastructure.Factories;
 using CourseProvider.Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +10,7 @@ public interface ICourseService
 {
     Task<Course> CreateCourseAsync(CourseCreateRequest request);
     Task<Course> GetCourseByIdAsync(string id);
-    Task<IEnumerable<Course>> GetCoursesAsync();
+    Task<IEnumerable<Course>> GetCoursesAsync(); //ger en array med courses
     Task<Course> UpdateCourseAsync(CourseUpdateRequest request);
     Task<bool> DeleteCourseAsync(string id);
 }
@@ -24,15 +23,15 @@ public class CourseService(IDbContextFactory<DataContext> contextFactory) : ICou
 
 
 
-
-   public async Task<Course> CreateCourseAsync(CourseCreateRequest request)
+    //måste omvanlda från en request till en Entitet, detta görs i factory
+    public async Task<Course> CreateCourseAsync(CourseCreateRequest request)
     {
         //Get access to db
         await using var context = _contextFactory.CreateDbContext();
 
         //Omvandla/populera. variabel courseEtntiyt, skicka request till CourseFactory create
         var courseEntity = CourseFactory.Create(request);
-        
+
         //lägga till i db
         context.Courses.Add(courseEntity);
 
@@ -53,10 +52,10 @@ public class CourseService(IDbContextFactory<DataContext> contextFactory) : ICou
 
         //return entity if true
         return courseEntity == null ? null! : CourseFactory.Create(courseEntity);
-        
+
     }
 
-   public async Task<IEnumerable<Course>> GetCoursesAsync()
+    public async Task<IEnumerable<Course>> GetCoursesAsync()
     {
         //get access to DB
         await using var context = _contextFactory.CreateDbContext();
@@ -88,9 +87,7 @@ public class CourseService(IDbContextFactory<DataContext> contextFactory) : ICou
         updatedCourseEntity.Id = existingCourse.Id;
 
         //set the new values to the entity
-        context.Entry(existingCourse).CurrentValues.SetValues(updatedCourseEntity); 
-
-
+        context.Entry(existingCourse).CurrentValues.SetValues(updatedCourseEntity);
 
 
         //save changes
@@ -100,7 +97,7 @@ public class CourseService(IDbContextFactory<DataContext> contextFactory) : ICou
         return CourseFactory.Create(existingCourse);
 
     }
-   public async Task<bool> DeleteCourseAsync(string id)
+    public async Task<bool> DeleteCourseAsync(string id)
     {
         //get access to db
         await using var context = _contextFactory.CreateDbContext();

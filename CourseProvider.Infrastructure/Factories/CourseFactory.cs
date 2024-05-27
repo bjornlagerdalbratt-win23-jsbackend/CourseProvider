@@ -23,9 +23,11 @@ public static class CourseFactory
             LikesInProcent = request.LikesInProcent,
             Likes = request.Likes,
             Hours = request.Hours,
+            //Loopar igenom och lägger i en lista
             Authors = request.Authors?.Select(a => new AuthorEntity
             {
-                Name = a.Name,
+                FirstName = a.FirstName,
+                LastName = a.LastName,
             }).ToList(),
             Prices = request.Prices == null ? null : new PricesEntity
             {
@@ -46,7 +48,7 @@ public static class CourseFactory
             }
         };
     }
-
+    //CourseUpdateRequest -> CourseEntity
     public static CourseEntity Create(CourseUpdateRequest request)
     {
         return new CourseEntity
@@ -66,7 +68,8 @@ public static class CourseFactory
             Hours = request.Hours,
             Authors = request.Authors?.Select(a => new AuthorEntity
             {
-                Name = a.Name,
+                FirstName = a.FirstName,
+                LastName = a.LastName,
             }).ToList(),
             Prices = request.Prices == null ? null : new PricesEntity
             {
@@ -109,7 +112,8 @@ public static class CourseFactory
             Hours = entity.Hours,
             Authors = entity.Authors?.Select(a => new Author
             {
-                Name = a.Name,
+                FirstName = a.FirstName,
+                LastName = a.LastName,
             }).ToList(),
             Prices = entity.Prices == null ? null : new Prices
             {

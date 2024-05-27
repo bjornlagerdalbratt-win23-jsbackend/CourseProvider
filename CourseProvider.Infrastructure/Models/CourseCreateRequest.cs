@@ -22,7 +22,8 @@ public class CourseCreateRequest
 
 public class AuthorCreateRequest
 {
-    public string? Name { get; set; }
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
 }
 public class PricesCreateRequest
 {

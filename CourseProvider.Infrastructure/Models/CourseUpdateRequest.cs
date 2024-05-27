@@ -23,7 +23,8 @@ public class CourseUpdateRequest
 
 public class AuthorUpdateRequest
 {
-    public string? Name { get; set; }
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
 }
 public class PricesUpdateRequest
 {

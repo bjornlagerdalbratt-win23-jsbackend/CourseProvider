@@ -1,7 +1,5 @@
 ﻿using CourseProvider.Infrastructure.Models;
 using CourseProvider.Infrastructure.Services;
-using HotChocolate;
-using HotChocolate.AzureFunctions;
 
 namespace CourseProvider.Infrastructure.GraphQL.Mutations;
 
