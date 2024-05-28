@@ -1,5 +1,0 @@
-<configuration>
-  <config>
-    <add key="repositoryPath" value="C:/Users/Helga/.nuget/packages" />
-  </config>
-</configuration>
