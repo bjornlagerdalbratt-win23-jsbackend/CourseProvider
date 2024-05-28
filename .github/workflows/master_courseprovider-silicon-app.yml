@@ -39,4 +39,4 @@ jobs:
           app-name: 'CourseProvider-silicon-app'
           slot-name: 'Production'
           package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5F38B617728C4043967631C294028097 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_73EE428A9864428A88F8C262157F48BF }}
