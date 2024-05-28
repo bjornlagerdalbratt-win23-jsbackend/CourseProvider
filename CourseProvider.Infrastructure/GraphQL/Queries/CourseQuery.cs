@@ -1,6 +1,5 @@
 ﻿using CourseProvider.Infrastructure.Models;
 using CourseProvider.Infrastructure.Services;
-using HotChocolate;
 
 namespace CourseProvider.Infrastructure.GraphQL.Queries;
 
@@ -14,9 +13,11 @@ public class CourseQuery(ICourseService courseService)
         return await _courseService.GetCoursesAsync();
     }
 
-    [GraphQLName("getCoursesById")]
+    [GraphQLName("getCourseById")]
     public async Task<Course> GetCourseByIdAsync(string id)
     {
         return await _courseService.GetCourseByIdAsync(id);
     }
+
+
 }

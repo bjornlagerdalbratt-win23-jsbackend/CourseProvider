@@ -41,6 +41,6 @@ public class GraphQL(ILogger<GraphQL> logger, IGraphQLRequestExecutor graphQLReq
             _logger.LogError($"ERROR : GraphQl.Run() :: {ex.Message}");
         }
 
-        return null!;
+        return new BadRequestResult();
     }
 }

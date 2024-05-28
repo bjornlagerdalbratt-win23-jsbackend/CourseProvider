@@ -24,7 +24,3 @@ public class CourseEntity
 
 }
 
-//public class CategoryEntity
-//{
-//    public string? CategoryName { get; set; }
-//}
