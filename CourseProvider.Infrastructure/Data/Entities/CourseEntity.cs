@@ -8,6 +8,7 @@ public class CourseEntity
     public string Id { get; set; } = Guid.NewGuid().ToString(); //Guid för att automatiskt sätta ID
     public string? ImageUri { get; set; }
     public string? ImageHeaderUri { get; set; }
+    public string? ImageAuthor { get; set; }
     public bool IsBestSeller { get; set; }
     public bool IsDigital { get; set; }
     public string[]? Categories { get; set; }

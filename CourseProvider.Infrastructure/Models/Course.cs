@@ -5,6 +5,7 @@ public class Course
     public string Id { get; set; } = null!;
     public string? ImageUri { get; set; }
     public string? ImageHeaderUri { get; set; }
+    public string? ImageAuthor { get; set; }
     public bool IsBestSeller { get; set; }
     public bool IsDigital { get; set; }
     public string[]? Categories { get; set; }
@@ -37,6 +38,7 @@ public class Content
 {
     public string? Description { get; set; }
     public string[]? Includes { get; set; }
+    public string[]? Learnings { get; set; }
     public virtual List<ProgramDetailItem>? ProgramDetails { get; set; }
 }
 

@@ -20,6 +20,9 @@ public class CourseType : ObjectType<CourseEntity>
         descriptor.Field(c => c.Authors).Type<ListType<AuthorType>>();
         descriptor.Field(c => c.Prices).Type<PricesType>();
         descriptor.Field(c => c.Content).Type<ContentType>();
+        //descriptor.Field(c => c.ImageAuthor).Type<ContentType>();
+        //descriptor.Field(c => c.ImageUri).Type<ContentType>();
+        //descriptor.Field(c => c.ImageHeaderUri).Type<ContentType>();
 
     }
 }
@@ -30,6 +33,7 @@ public class AuthorType : ObjectType<AuthorEntity>
     {
         descriptor.Field(a => a.FirstName).Type<StringType>();
         descriptor.Field(a => a.LastName).Type<StringType>();
+
     }
 }
 public class PricesType : ObjectType<PricesEntity>
@@ -47,6 +51,7 @@ public class ContentType : ObjectType<ContentEntity>
     {
         descriptor.Field(c => c.Description).Type<StringType>();
         descriptor.Field(c => c.Includes).Type<ListType<StringType>>();
+        descriptor.Field(c => c.Learnings).Type<ListType<StringType>>();
         descriptor.Field(c => c.ProgramDetails).Type<ListType<ProgramDetailItemType>>();
     }
 }

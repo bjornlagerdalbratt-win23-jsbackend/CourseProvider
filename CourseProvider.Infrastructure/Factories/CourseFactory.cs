@@ -13,6 +13,7 @@ public static class CourseFactory
         {
             ImageUri = request.ImageUri,
             ImageHeaderUri = request.ImageHeaderUri,
+            ImageAuthor = request.ImageAuthor,
             IsBestSeller = request.IsBestSeller,
             IsDigital = request.IsDigital,
             Categories = request.Categories,
@@ -39,6 +40,7 @@ public static class CourseFactory
             {
                 Description = request.Content.Description,
                 Includes = request.Content.Includes,
+                Learnings = request.Content.Learnings,
                 ProgramDetails = request.Content.ProgramDetails?.Select(pd => new ProgramDetailItemEntity
                 {
                     Id = pd.Id,
@@ -56,6 +58,7 @@ public static class CourseFactory
             Id = request.Id,
             ImageUri = request.ImageUri,
             ImageHeaderUri = request.ImageHeaderUri,
+            ImageAuthor = request.ImageAuthor,
             IsBestSeller = request.IsBestSeller,
             IsDigital = request.IsDigital,
             Categories = request.Categories,
@@ -81,6 +84,7 @@ public static class CourseFactory
             {
                 Description = request.Content.Description,
                 Includes = request.Content.Includes,
+                Learnings = request.Content.Learnings,
                 ProgramDetails = request.Content.ProgramDetails?.Select(pd => new ProgramDetailItemEntity
                 {
                     Id = pd.Id,
@@ -100,6 +104,7 @@ public static class CourseFactory
             Id = entity.Id,
             ImageUri = entity.ImageUri,
             ImageHeaderUri = entity.ImageHeaderUri,
+            ImageAuthor = entity.ImageAuthor,
             IsBestSeller = entity.IsBestSeller,
             IsDigital = entity.IsDigital,
             Categories = entity.Categories,
@@ -125,6 +130,7 @@ public static class CourseFactory
             {
                 Description = entity.Content.Description,
                 Includes = entity.Content.Includes,
+                Learnings = entity.Content.Learnings,
                 ProgramDetails = entity.Content.ProgramDetails?.Select(pd => new ProgramDetailItem
                 {
                     Id = pd.Id,
