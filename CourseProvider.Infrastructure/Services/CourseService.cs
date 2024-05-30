@@ -11,7 +11,7 @@ public interface ICourseService
     Task<Course> CreateCourseAsync(CourseCreateRequest request);
     Task<Course> GetCourseByIdAsync(string id);
     Task<IEnumerable<Course>> GetCoursesAsync(); //ger en array med courses
-    Task<Course> UpdateCourseAsync(CourseUpdateRequest request);
+    Task<Course> UpdateCourseAsync(CourseUpdateRequestInput request);
     Task<bool> DeleteCourseAsync(string id);
 }
 
@@ -67,7 +67,7 @@ public class CourseService(IDbContextFactory<DataContext> contextFactory) : ICou
         return courseEntities.Select(CourseFactory.Create);
     }
 
-    public async Task<Course> UpdateCourseAsync(CourseUpdateRequest request)
+    public async Task<Course> UpdateCourseAsync(CourseUpdateRequestInput request)
     {
         //get access to DB
         await using var context = _contextFactory.CreateDbContext();

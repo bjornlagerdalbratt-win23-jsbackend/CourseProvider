@@ -49,7 +49,7 @@ public static class CourseFactory
         };
     }
     //CourseUpdateRequest -> CourseEntity
-    public static CourseEntity Create(CourseUpdateRequest request)
+    public static CourseEntity Create(CourseUpdateRequestInput request)
     {
         return new CourseEntity
         {

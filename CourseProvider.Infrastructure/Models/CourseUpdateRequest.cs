@@ -1,6 +1,6 @@
 ﻿namespace CourseProvider.Infrastructure.Models;
 
-public class CourseUpdateRequest
+public class CourseUpdateRequestInput
 {
     public string Id { get; set; } = null!;
     public string? ImageUri { get; set; }
