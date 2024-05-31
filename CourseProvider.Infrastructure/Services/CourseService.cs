@@ -1,4 +1,5 @@
 ﻿using CourseProvider.Infrastructure.Data.Contexts;
+using CourseProvider.Infrastructure.Data.Entities;
 using CourseProvider.Infrastructure.Factories;
 using CourseProvider.Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
@@ -69,33 +70,93 @@ public class CourseService(IDbContextFactory<DataContext> contextFactory) : ICou
 
     public async Task<Course> UpdateCourseAsync(CourseUpdateRequest request)
     {
-        //get access to DB
-        await using var context = _contextFactory.CreateDbContext();
+        try
+        {
+            await using var context = _contextFactory.CreateDbContext();
 
-        //search for existing course
-        var existingCourse = await context.Courses.FirstOrDefaultAsync(x => x.Id == request.Id);
+            var existingCourse = await context.Courses
+                .Include(c => c.Content)
+                .ThenInclude(c => c.ProgramDetails)
+                .FirstOrDefaultAsync(x => x.Id == request.Id);
 
-        //return null if null
-        if (existingCourse == null) return null!;
+            if (existingCourse == null) return null!;
 
+            // Update course details
+            existingCourse.ImageUri = request.ImageUri;
+            existingCourse.ImageHeaderUri = request.ImageHeaderUri;
+            existingCourse.ImageAuthor = request.ImageAuthor;
+            existingCourse.IsBestSeller = request.IsBestSeller;
+            existingCourse.IsDigital = request.IsDigital;
+            existingCourse.Categories = request.Categories;
+            existingCourse.Title = request.Title;
+            existingCourse.Ingress = request.Ingress;
+            existingCourse.StarRating = request.StarRating;
+            existingCourse.Reviews = request.Reviews;
+            existingCourse.LikesInProcent = request.LikesInProcent;
+            existingCourse.Likes = request.Likes;
+            existingCourse.Hours = request.Hours;
 
+            // Update authors
+            if (request.Authors != null)
+            {
+                existingCourse.Authors = request.Authors.Select(a => new AuthorEntity
+                {
+                    FirstName = a.FirstName,
+                    LastName = a.LastName,
+                }).ToList();
+            }
 
-        //create the UpdatedEntity through CourseFactory, create with request
-        var updatedCourseEntity = CourseFactory.Create(request);
+            // Update prices
+            if (request.Prices != null)
+            {
+                existingCourse.Prices = new PricesEntity
+                {
+                    Currency = request.Prices.Currency,
+                    Price = request.Prices.Price,
+                    Discount = request.Prices.Discount,
+                };
+            }
 
-        //update the existing entity with the updated
-        updatedCourseEntity.Id = existingCourse.Id;
+            // Update content
+            if (request.Content != null)
+            {
+                if (existingCourse.Content == null)
+                {
+                    existingCourse.Content = new ContentEntity();
+                }
 
-        //set the new values to the entity
-        context.Entry(existingCourse).CurrentValues.SetValues(updatedCourseEntity);
+                existingCourse.Content.Description = request.Content.Description;
+                existingCourse.Content.Includes = request.Content.Includes;
+                existingCourse.Content.Learnings = request.Content.Learnings;
 
+                if (request.Content.ProgramDetails != null)
+                {
+                    {
+                        existingCourse.Content.ProgramDetails = request.Content.ProgramDetails.Select(pd => new ProgramDetailItemEntity
+                        {
+                            Id = pd.Id,
+                            Title = pd.Title,
+                            Description = pd.Description,
+                        }).ToList();
+                    }
+                }
 
-        //save changes
-        await context.SaveChangesAsync();
+                await context.SaveChangesAsync();
 
-        //return The updated entity
-        return CourseFactory.Create(existingCourse);
-
+                var updatedCourse = CourseFactory.Create(existingCourse);
+                request.Content = null;
+                return updatedCourse;
+            }
+            else
+            {
+                return null!;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            throw;
+        }
     }
     public async Task<bool> DeleteCourseAsync(string id)
     {
