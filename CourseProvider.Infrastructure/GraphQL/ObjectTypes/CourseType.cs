@@ -20,9 +20,9 @@ public class CourseType : ObjectType<CourseEntity>
         descriptor.Field(c => c.Authors).Type<ListType<AuthorType>>();
         descriptor.Field(c => c.Prices).Type<PricesType>();
         descriptor.Field(c => c.Content).Type<ContentType>();
-        //descriptor.Field(c => c.ImageAuthor).Type<ContentType>();
-        //descriptor.Field(c => c.ImageUri).Type<ContentType>();
-        //descriptor.Field(c => c.ImageHeaderUri).Type<ContentType>();
+        descriptor.Field(c => c.ImageAuthor).Type<ContentType>();
+        descriptor.Field(c => c.ImageUri).Type<ContentType>();
+        descriptor.Field(c => c.ImageHeaderUri).Type<ContentType>();
 
     }
 }
