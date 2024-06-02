@@ -44,8 +44,8 @@ public static class CourseFactory
                 ProgramDetails = request.Content.ProgramDetails?.Select(pd => new ProgramDetailItemEntity
                 {
                     Id = pd.Id,
-                    Title = pd.Title,
-                    Description = pd.Description,
+                    ItemTitle = pd.ItemTitle,
+                    ItemDescription = pd.ItemDescription,
                 }).ToList()
             }
         };
@@ -88,8 +88,8 @@ public static class CourseFactory
                 ProgramDetails = request.Content.ProgramDetails?.Select(pd => new ProgramDetailItemEntity
                 {
                     Id = pd.Id,
-                    Title = pd.Title,
-                    Description = pd.Description,
+                    ItemTitle = pd.ItemTitle,
+                    ItemDescription = pd.ItemDescription,
                 }).ToList()
             }
         };
@@ -134,8 +134,8 @@ public static class CourseFactory
                 ProgramDetails = entity.Content.ProgramDetails?.Select(pd => new ProgramDetailItem
                 {
                     Id = pd.Id,
-                    Title = pd.Title,
-                    Description = pd.Description,
+                    ItemTitle = pd.ItemTitle,
+                    ItemDescription = pd.ItemDescription,
                 }).ToList()
             }
         };

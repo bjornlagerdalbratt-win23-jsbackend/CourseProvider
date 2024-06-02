@@ -20,9 +20,9 @@ public class CourseType : ObjectType<CourseEntity>
         descriptor.Field(c => c.Authors).Type<ListType<AuthorType>>();
         descriptor.Field(c => c.Prices).Type<PricesType>();
         descriptor.Field(c => c.Content).Type<ContentType>();
-        descriptor.Field(c => c.ImageAuthor).Type<ContentType>();
-        descriptor.Field(c => c.ImageUri).Type<ContentType>();
-        descriptor.Field(c => c.ImageHeaderUri).Type<ContentType>();
+        descriptor.Field(c => c.ImageAuthor).Type<StringType>();
+        descriptor.Field(c => c.ImageUri).Type<StringType>();
+        descriptor.Field(c => c.ImageHeaderUri).Type<StringType>();
 
     }
 }
@@ -60,7 +60,7 @@ public class ProgramDetailItemType : ObjectType<ProgramDetailItemEntity>
     protected override void Configure(IObjectTypeDescriptor<ProgramDetailItemEntity> descriptor)
     {
         descriptor.Field(p => p.Id).Type<IntType>();
-        descriptor.Field(p => p.Title).Type<StringType>();
-        descriptor.Field(p => p.Description).Type<StringType>();
+        descriptor.Field(p => p.ItemTitle).Type<StringType>();
+        descriptor.Field(p => p.ItemDescription).Type<StringType>();
     }
 }

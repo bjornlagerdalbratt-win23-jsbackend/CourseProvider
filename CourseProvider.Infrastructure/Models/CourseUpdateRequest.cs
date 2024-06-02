@@ -45,6 +45,6 @@ public class ContentUpdateRequest
 public class ProgramDetailItemUpdateRequest
 {
     public int Id { get; set; }
-    public string? Title { get; set; }
-    public string? Description { get; set; }
+    public string? ItemTitle { get; set; }
+    public string? ItemDescription { get; set; }
 }

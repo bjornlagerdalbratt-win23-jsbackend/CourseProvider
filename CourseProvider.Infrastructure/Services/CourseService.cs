@@ -135,8 +135,8 @@ public class CourseService(IDbContextFactory<DataContext> contextFactory) : ICou
                         existingCourse.Content.ProgramDetails = request.Content.ProgramDetails.Select(pd => new ProgramDetailItemEntity
                         {
                             Id = pd.Id,
-                            Title = pd.Title,
-                            Description = pd.Description,
+                            ItemTitle = pd.ItemTitle,
+                            ItemDescription = pd.ItemDescription,
                         }).ToList();
                     }
                 }
